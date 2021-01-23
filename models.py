@@ -240,7 +240,7 @@ class Network(structure_models.ServiceProperty):
         return '%s / %s' % (self.settings, self.name)
 
 
-class CustomerNetwork(models.Model):
+class CustomerNetworkNew(models.Model):
     # This model allows to specify allowed networks for VM provision
     customer = models.ForeignKey(structure_models.Customer, on_delete=models.CASCADE)
     network = models.ForeignKey('Network', on_delete=models.CASCADE)
@@ -252,7 +252,7 @@ class CustomerNetwork(models.Model):
         unique_together = ('customer', 'network')
 
 
-class CustomerNetworkPair(models.Model):
+class CustomerNetworkNewPair(models.Model):
     # This model allows to specify allowed networks for existing VM NIC provision
     customer = models.ForeignKey(structure_models.Customer, on_delete=models.CASCADE)
     network = models.ForeignKey('Network', on_delete=models.CASCADE)
@@ -281,7 +281,7 @@ class Datastore(structure_models.ServiceProperty):
         return '%s / %s' % (self.settings, self.name)
 
 
-class CustomerDatastore(models.Model):
+class CustomerDatastoreNew(models.Model):
     customer = models.ForeignKey(structure_models.Customer, on_delete=models.CASCADE)
     datastore = models.ForeignKey('Datastore', on_delete=models.CASCADE)
 
@@ -301,7 +301,7 @@ class Folder(structure_models.ServiceProperty):
         return 'opennebula-folder'
 
 
-class CustomerFolder(models.Model):
+class CustomerFolderNew(models.Model):
     customer = models.ForeignKey(structure_models.Customer, on_delete=models.CASCADE)
     folder = models.ForeignKey('Folder', on_delete=models.CASCADE)
 

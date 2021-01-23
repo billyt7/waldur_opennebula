@@ -75,10 +75,10 @@ class NetworkFilter(structure_filters.ServicePropertySettingsFilter):
     )
 
     def filter_customer(self, queryset, name, value):
-        return queryset.filter(customernetwork__customer__uuid=value)
+        return queryset.filter(CustomerNetworkNew__customer__uuid=value)
 
     def filter_customer_pair(self, queryset, name, value):
-        return queryset.filter(customernetworkpair__customer__uuid=value)
+        return queryset.filter(CustomerNetworkNewpair__customer__uuid=value)
 
     class Meta(structure_filters.ServicePropertySettingsFilter.Meta):
         model = models.Network
@@ -90,7 +90,7 @@ class DatastoreFilter(structure_filters.ServicePropertySettingsFilter):
     )
 
     def filter_customer(self, queryset, name, value):
-        return queryset.filter(customerdatastore__customer__uuid=value)
+        return queryset.filter(CustomerDatastoreNew__customer__uuid=value)
 
     class Meta(structure_filters.ServicePropertySettingsFilter.Meta):
         model = models.Datastore
@@ -102,7 +102,7 @@ class FolderFilter(structure_filters.ServicePropertySettingsFilter):
     )
 
     def filter_customer(self, queryset, name, value):
-        return queryset.filter(customerfolder__customer__uuid=value)
+        return queryset.filter(CustomerFolderNew__customer__uuid=value)
 
     class Meta(structure_filters.ServicePropertySettingsFilter.Meta):
         model = models.Folder

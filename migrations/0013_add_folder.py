@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CustomerFolder',
+            name='CustomerFolderNew',
             fields=[
                 (
                     'id',
@@ -71,7 +71,7 @@ class Migration(migrations.Migration):
             bases=(waldur_core.core.models.BackendModelMixin, models.Model),
         ),
         migrations.AddField(
-            model_name='customerfolder',
+            model_name='CustomerFolderNew',
             name='folder',
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE, to='waldur_opennebula.Folder'

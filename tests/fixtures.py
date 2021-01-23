@@ -46,13 +46,13 @@ class OpenNebulaFixture(ProjectFixture):
 
     @cached_property
     def customer_network(self):
-        return factories.CustomerNetworkFactory(
+        return factories.CustomerNetworkNewFactory(
             network=self.network, customer=self.customer
         )
 
     @cached_property
     def customer_network_pair(self):
-        return factories.CustomerNetworkPairFactory(
+        return factories.CustomerNetworkNewPairFactory(
             network=self.network, customer=self.customer
         )
 
@@ -62,7 +62,7 @@ class OpenNebulaFixture(ProjectFixture):
 
     @cached_property
     def customer_datastore(self):
-        return factories.CustomerDatastoreFactory(
+        return factories.CustomerDatastoreNewFactory(
             datastore=self.datastore, customer=self.customer
         )
 
@@ -72,7 +72,7 @@ class OpenNebulaFixture(ProjectFixture):
 
     @cached_property
     def customer_folder(self):
-        return factories.CustomerFolderFactory(
+        return factories.CustomerFolderNewFactory(
             folder=self.folder, customer=self.customer
         )
 

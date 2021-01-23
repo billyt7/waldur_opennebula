@@ -88,42 +88,42 @@ class CustomerClusterNewInline(options.TabularInline):
     formset = CustomerClusterNewInlineFormset
 
 
-class CustomerNetworkInlineFormset(CustomerInlineFormset):
+class CustomerNetworkNewInlineFormset(CustomerInlineFormset):
     service_property_field = 'network'
 
 
-class CustomerNetworkInline(options.TabularInline):
-    model = models.CustomerNetwork
+class CustomerNetworkNewInline(options.TabularInline):
+    model = models.CustomerNetworkNew
     extra = 1
     classes = ['collapse']
     verbose_name_plural = 'Customer OpenNebula networks for new VMs'
-    formset = CustomerNetworkInlineFormset
+    formset = CustomerNetworkNewInlineFormset
 
 
-class CustomerNetworkPairInline(options.TabularInline):
-    model = models.CustomerNetworkPair
+class CustomerNetworkNewPairInline(options.TabularInline):
+    model = models.CustomerNetworkNewPair
     extra = 1
     classes = ['collapse']
     verbose_name_plural = 'Customer OpenNebula networks for existing VMs'
 
 
-class CustomerDatastoreInline(options.TabularInline):
-    model = models.CustomerDatastore
+class CustomerDatastoreNewInline(options.TabularInline):
+    model = models.CustomerDatastoreNew
     extra = 1
     classes = ['collapse']
     verbose_name_plural = 'Customer OpenNebula datastores'
 
 
-class CustomerFolderInlineInlineFormset(CustomerInlineFormset):
+class CustomerFolderNewInlineInlineFormset(CustomerInlineFormset):
     service_property_field = 'folder'
 
 
-class CustomerFolderInline(options.TabularInline):
-    model = models.CustomerFolder
+class CustomerFolderNewInline(options.TabularInline):
+    model = models.CustomerFolderNew
     extra = 1
     classes = ['collapse']
     verbose_name_plural = 'Customer OpenNebula folders'
-    formset = CustomerFolderInlineInlineFormset
+    formset = CustomerFolderNewInlineInlineFormset
 
 
 admin.site.register(models.OpenNebulaService, structure_admin.ServiceAdmin)
@@ -139,7 +139,7 @@ admin.site.register(models.Network, structure_admin.ServicePropertyAdmin)
 admin.site.register(models.Folder, structure_admin.ServicePropertyAdmin)
 
 structure_admin.CustomerAdmin.inlines += [CustomerClusterNewInline]
-structure_admin.CustomerAdmin.inlines += [CustomerNetworkInline]
-structure_admin.CustomerAdmin.inlines += [CustomerNetworkPairInline]
-structure_admin.CustomerAdmin.inlines += [CustomerDatastoreInline]
-structure_admin.CustomerAdmin.inlines += [CustomerFolderInline]
+structure_admin.CustomerAdmin.inlines += [CustomerNetworkNewInline]
+structure_admin.CustomerAdmin.inlines += [CustomerNetworkNewPairInline]
+structure_admin.CustomerAdmin.inlines += [CustomerDatastoreNewInline]
+structure_admin.CustomerAdmin.inlines += [CustomerFolderNewInline]

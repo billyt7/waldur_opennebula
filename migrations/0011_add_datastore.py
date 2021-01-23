@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CustomerDatastore',
+            name='CustomerDatastoreNew',
             fields=[
                 (
                     'id',
@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
             bases=(waldur_core.core.models.BackendModelMixin, models.Model),
         ),
         migrations.AddField(
-            model_name='customerdatastore',
+            model_name='CustomerDatastoreNew',
             name='datastore',
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
@@ -104,6 +104,6 @@ class Migration(migrations.Migration):
             name='datastore', unique_together=set([('settings', 'backend_id')]),
         ),
         migrations.AlterUniqueTogether(
-            name='customerdatastore', unique_together=set([('customer', 'datastore')]),
+            name='CustomerDatastoreNew', unique_together=set([('customer', 'datastore')]),
         ),
     ]

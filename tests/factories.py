@@ -210,17 +210,17 @@ class PortFactory(factory.DjangoModelFactory):
         return 'http://testserver' + reverse('opennebula-port-list')
 
 
-class CustomerNetworkFactory(factory.DjangoModelFactory):
+class CustomerNetworkNewFactory(factory.DjangoModelFactory):
     class Meta:
-        model = models.CustomerNetwork
+        model = models.CustomerNetworkNew
 
     customer = factory.SubFactory(structure_factories.CustomerFactory)
     network = factory.SubFactory(NetworkFactory)
 
 
-class CustomerNetworkPairFactory(factory.DjangoModelFactory):
+class CustomerNetworkNewPairFactory(factory.DjangoModelFactory):
     class Meta:
-        model = models.CustomerNetworkPair
+        model = models.CustomerNetworkNewPair
 
     customer = factory.SubFactory(structure_factories.CustomerFactory)
     network = factory.SubFactory(NetworkFactory)
@@ -249,9 +249,9 @@ class DatastoreFactory(factory.DjangoModelFactory):
         return 'http://testserver' + reverse('opennebula-datastore-list')
 
 
-class CustomerDatastoreFactory(factory.DjangoModelFactory):
+class CustomerDatastoreNewFactory(factory.DjangoModelFactory):
     class Meta:
-        model = models.CustomerDatastore
+        model = models.CustomerDatastoreNew
 
     customer = factory.SubFactory(structure_factories.CustomerFactory)
     datastore = factory.SubFactory(DatastoreFactory)
@@ -278,9 +278,9 @@ class FolderFactory(factory.DjangoModelFactory):
         return 'http://testserver' + reverse('opennebula-folder-list')
 
 
-class CustomerFolderFactory(factory.DjangoModelFactory):
+class CustomerFolderNewFactory(factory.DjangoModelFactory):
     class Meta:
-        model = models.CustomerFolder
+        model = models.CustomerFolderNew
 
     customer = factory.SubFactory(structure_factories.CustomerFactory)
     folder = factory.SubFactory(FolderFactory)

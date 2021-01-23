@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CustomerNetwork',
+            name='CustomerNetworkNew',
             fields=[
                 (
                     'id',
@@ -40,6 +40,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AlterUniqueTogether(
-            name='customernetwork', unique_together=set([('customer', 'network')]),
+            name='CustomerNetworkNew', unique_together=set([('customer', 'network')]),
         ),
     ]

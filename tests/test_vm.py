@@ -182,7 +182,7 @@ class VirtualMachineNetworkValidationTest(VirtualMachineCreateBaseTest):
         payload = self.get_valid_payload()
 
         network = factories.NetworkFactory(settings=self.fixture.settings)
-        factories.CustomerNetworkFactory(
+        factories.CustomerNetworkNewFactory(
             network=network, customer=self.fixture.customer
         )
 

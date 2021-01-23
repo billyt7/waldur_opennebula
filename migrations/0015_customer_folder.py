@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='customerfolder',
+            model_name='CustomerFolderNew',
             name='customer',
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE, to='structure.Customer'
             ),
         ),
         migrations.AlterUniqueTogether(
-            name='customerfolder', unique_together=set([('customer', 'folder')]),
+            name='CustomerFolderNew', unique_together=set([('customer', 'folder')]),
         ),
     ]

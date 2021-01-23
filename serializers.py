@@ -490,7 +490,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
             customer = spl.project.customer
             try:
                 folder = models.Folder.objects.filter(
-                    settings=spl.service.settings, customerfolder__customer=customer
+                    settings=spl.service.settings, CustomerFolderNew__customer=customer
                 ).get()
             except ObjectDoesNotExist:
                 raise serializers.ValidationError(
@@ -512,7 +512,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
                     'This folder is not available for this service.'
                 )
 
-            if not folder.customerfolder_set.filter(
+            if not folder.CustomerFolderNew_set.filter(
                 customer=spl.project.customer
             ).exists():
                 raise serializers.ValidationError(
@@ -532,7 +532,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
             customer = spl.project.customer
             datastore = (
                 models.Datastore.objects.filter(
-                    settings=spl.service.settings, customerdatastore__customer=customer
+                    settings=spl.service.settings, CustomerDatastoreNew__customer=customer
                 )
                 .order_by('-free_space')
                 .first()
@@ -557,7 +557,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
                     'This datastore is not available for this service.'
                 )
 
-            if not datastore.customerdatastore_set.filter(
+            if not datastore.CustomerDatastoreNew_set.filter(
                 customer=spl.project.customer
             ).exists():
                 raise serializers.ValidationError(
@@ -581,7 +581,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
             customer = spl.project.customer
             try:
                 network = models.Network.objects.filter(
-                    settings=spl.service.settings, customernetwork__customer=customer
+                    settings=spl.service.settings, CustomerNetworkNew__customer=customer
                 ).get()
             except ObjectDoesNotExist:
                 raise serializers.ValidationError(
@@ -603,7 +603,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
                     'This network is not available for this service.'
                 )
 
-            if not network.customernetwork_set.filter(
+            if not network.CustomerNetworkNew_set.filter(
                 customer=spl.project.customer
             ).exists():
                 raise serializers.ValidationError(
@@ -710,7 +710,7 @@ class PortSerializer(structure_serializers.BaseResourceSerializer):
         attrs['vm'] = vm
         attrs['service_project_link'] = vm.service_project_link
 
-        if not models.CustomerNetworkPair.objects.filter(
+        if not models.CustomerNetworkNewPair.objects.filter(
             customer=vm.customer, network=attrs['network'],
         ).exists():
             raise serializers.ValidationError(
