@@ -76,16 +76,16 @@ class CustomerInlineFormset(BaseInlineFormSet):
                     enabled_settings[service_settings] = True
 
 
-class CustomerClusterInlineFormset(CustomerInlineFormset):
+class CustomerClusterNewInlineFormset(CustomerInlineFormset):
     service_property_field = 'cluster'
 
 
-class CustomerClusterInline(options.TabularInline):
-    model = models.CustomerCluster
+class CustomerClusterNewInline(options.TabularInline):
+    model = models.CustomerClusterNew
     extra = 1
     classes = ['collapse']
     verbose_name_plural = 'Customer OpenNebula clusters'
-    formset = CustomerClusterInlineFormset
+    formset = CustomerClusterNewInlineFormset
 
 
 class CustomerNetworkInlineFormset(CustomerInlineFormset):
@@ -138,7 +138,7 @@ admin.site.register(models.Datastore, structure_admin.ServicePropertyAdmin)
 admin.site.register(models.Network, structure_admin.ServicePropertyAdmin)
 admin.site.register(models.Folder, structure_admin.ServicePropertyAdmin)
 
-structure_admin.CustomerAdmin.inlines += [CustomerClusterInline]
+structure_admin.CustomerAdmin.inlines += [CustomerClusterNewInline]
 structure_admin.CustomerAdmin.inlines += [CustomerNetworkInline]
 structure_admin.CustomerAdmin.inlines += [CustomerNetworkPairInline]
 structure_admin.CustomerAdmin.inlines += [CustomerDatastoreInline]

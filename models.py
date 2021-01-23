@@ -218,7 +218,7 @@ class Cluster(structure_models.ServiceProperty):
         return '%s / %s' % (self.settings, self.name)
 
 
-class CustomerCluster(models.Model):
+class CustomerClusterNew(models.Model):
     customer = models.ForeignKey(structure_models.Customer, on_delete=models.CASCADE)
     cluster = models.ForeignKey('Cluster', on_delete=models.CASCADE)
 

@@ -60,7 +60,7 @@ class ClusterFilter(structure_filters.ServicePropertySettingsFilter):
     )
 
     def filter_customer(self, queryset, name, value):
-        return queryset.filter(customercluster__customer__uuid=value)
+        return queryset.filter(CustomerClusterNew__customer__uuid=value)
 
     class Meta(structure_filters.ServicePropertySettingsFilter.Meta):
         model = models.Cluster

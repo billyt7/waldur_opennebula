@@ -102,9 +102,9 @@ class ClusterFactory(factory.DjangoModelFactory):
         return 'http://testserver' + reverse('opennebula-cluster-list')
 
 
-class CustomerClusterFactory(factory.DjangoModelFactory):
+class CustomerClusterNewFactory(factory.DjangoModelFactory):
     class Meta:
-        model = models.CustomerCluster
+        model = models.CustomerClusterNew
 
     customer = factory.SubFactory(structure_factories.CustomerFactory)
     cluster = factory.SubFactory(ClusterFactory)

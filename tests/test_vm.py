@@ -111,7 +111,7 @@ class VirtualMachineClusterValidationTest(VirtualMachineCreateBaseTest):
         del payload['cluster']
 
         cluster = factories.ClusterFactory(settings=self.fixture.settings)
-        factories.CustomerClusterFactory(
+        factories.CustomerClusterNewFactory(
             cluster=cluster, customer=self.fixture.customer
         )
 

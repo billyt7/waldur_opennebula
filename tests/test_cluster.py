@@ -18,16 +18,16 @@ class ClusterGetTest(test.APITransactionTestCase):
         cluster_3 = factories.ClusterFactory()
         cluster_4 = factories.ClusterFactory()
 
-        factories.CustomerClusterFactory(
+        factories.CustomerClusterNewFactory(
             cluster=cluster_1, customer=self.fixture.customer,
         )
-        factories.CustomerClusterFactory(
+        factories.CustomerClusterNewFactory(
             cluster=cluster_2, customer=self.fixture.customer,
         )
-        factories.CustomerClusterFactory(
+        factories.CustomerClusterNewFactory(
             cluster=cluster_3, customer=self.fixture_2.customer,
         )
-        factories.CustomerClusterFactory(
+        factories.CustomerClusterNewFactory(
             cluster=cluster_4, customer=self.fixture_2.customer,
         )
         self.url = factories.ClusterFactory.get_list_url()

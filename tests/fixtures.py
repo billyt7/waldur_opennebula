@@ -36,7 +36,7 @@ class OpenNebulaFixture(ProjectFixture):
 
     @cached_property
     def customer_cluster(self):
-        return factories.CustomerClusterFactory(
+        return factories.CustomerClusterNewFactory(
             cluster=self.cluster, customer=self.customer
         )
 

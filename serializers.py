@@ -429,7 +429,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
             customer = spl.project.customer
             try:
                 cluster = models.Cluster.objects.filter(
-                    settings=spl.service.settings, customercluster__customer=customer
+                    settings=spl.service.settings, CustomerClusterNew__customer=customer
                 ).get()
             except ObjectDoesNotExist:
                 return self._fallback_to_default_cluster(attrs)
@@ -449,7 +449,7 @@ class VirtualMachineSerializer(structure_serializers.BaseResourceSerializer):
                     'This cluster is not available for this service.'
                 )
 
-            if not cluster.customercluster_set.filter(
+            if not cluster.CustomerClusterNew_set.filter(
                 customer=spl.project.customer
             ).exists():
                 raise serializers.ValidationError(
