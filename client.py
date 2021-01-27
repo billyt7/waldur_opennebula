@@ -32,7 +32,7 @@ class OpenNebulaClient:
         :param vm_id: Virtual machine identifier
         :type vm_id: string
         """
-        return one.vm.action('stop', vm_id)
+        return one.vm.action('suspend', vm_id)
 
     def list_clusters(self):
         return self._get('vcenter/cluster')
