@@ -4,6 +4,7 @@ from urllib.parse import urlencode
 
 import pyVim.connect
 import pyVim.task
+import pyone
 from django.utils import timezone
 from django.utils.functional import cached_property
 from pyVmomi import vim
@@ -29,6 +30,7 @@ class OpenNebulaBackendError(ServiceBackendError):
 
 
 class OpenNebulaBackend(ServiceBackend):
+    
     def __init__(self, settings):
         """
         :type settings: :class:`waldur_core.structure.models.ServiceSettings`
@@ -640,27 +642,31 @@ class OpenNebulaBackend(ServiceBackend):
         except OpenNebulaError as e:
             raise OpenNebulaBackendError(e)
 
-    def start_virtual_machine(self, vm):
+    @staticmethod
+    def start_virtual_machine(vm_id):
         """
         Powers on a powered-off or suspended virtual machine.
 
         :param vm: Virtual machine to be started
         :type vm: :class:`waldur_opennebula.models.VirtualMachine`
         """
+        one = pyone.OneServer("http://5.254.20.106:2633/RPC2", session="oneadmin:BFGDETio2020")
         try:
-            self.client.start_vm(vm.backend_id)
+            one.vm.action('resume', vm_id)
         except OpenNebulaError as e:
             raise OpenNebulaBackendError(e)
 
-    def stop_virtual_machine(self, vm):
+    @staticmethod
+    def stop_virtual_machine(vm_id):
         """
         Powers off a powered-on or suspended virtual machine.
 
         :param vm: Virtual machine to be stopped
         :type vm: :class:`waldur_opennebula.models.VirtualMachine`
         """
+        one = pyone.OneServer("http://5.254.20.106:2633/RPC2", session="oneadmin:BFGDETio2020")
         try:
-            self.client.stop_vm(vm.backend_id)
+            one.vm.action('suspend', vm_id)
         except OpenNebulaError as e:
             raise OpenNebulaBackendError(e)
 

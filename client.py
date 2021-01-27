@@ -16,7 +16,7 @@ class OpenNebulaClient:
     #allocate vm, deploy vm on host, action on vm, migrate vm to target host, attach disk to vm, detach disk from vm, attach nic to vm, detach nic from vm, rename vm,
     #create vm snapshot, revert vm to snapshot, delete vm snapshot, info on vm, monitoring vm, 
 
-    def resume_vm(vm_id):
+    def start_vm(vm_id):
         """
         Power on given virtual machine.
 
