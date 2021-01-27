@@ -1,80 +1,38 @@
 import logging
-
 import requests
+import pyone
 
 from waldur_opennebula.exceptions import OpenNebulaError
 
 logger = logging.getLogger(__name__)
 
-
 class OpenNebulaClient:
     """
-    Lightweight OpenNebula vCenter Automation API client.
-    See also: https://opennebula.github.io/vsphere-automation-sdk-rest/vsphere/
+    OpenNebula vCenter Automation API client.
+    See also: http://docs.opennebula.io/5.8/integration/system_interfaces/api.html#actions-for-virtual-machine-management
     """
+    one = pyone.OneServer("http://5.254.20.106:2633/RPC2", session="oneadmin:BFGDETio2020")
 
-    def __init__(self, host, verify_ssl=True):
+    #allocate vm, deploy vm on host, action on vm, migrate vm to target host, attach disk to vm, detach disk from vm, attach nic to vm, detach nic from vm, rename vm,
+    #create vm snapshot, revert vm to snapshot, delete vm snapshot, info on vm, monitoring vm, 
+
+    def resume_vm(vm_id):
         """
-        Initialize client with connection options.
+        Power on given virtual machine.
 
-        :param host: OpenNebula vCenter server IP address / FQDN
-        :type host: string
-        :param verify_ssl: verify SSL certificates for HTTPS requests
-        :type verify_ssl: bool
+        :param vm_id: Virtual machine identifier
+        :type vm_id: string
         """
-        self._host = host
-        self._base_url = 'https://{0}/rest'.format(self._host)
-        self._session = requests.Session()
-        self._session.verify = verify_ssl
+        return one.vm.action('resume', vm_id)
 
-    def _request(self, method, endpoint, json=None, **kwargs):
-        url = '%s/%s' % (self._base_url, endpoint)
-        if json:
-            json = {'spec': json}
-        try:
-            response = self._session.request(method, url, json=json, **kwargs)
-        except requests.RequestException as e:
-            raise OpenNebulaError(e)
-
-        status_code = response.status_code
-        if status_code in (
-            requests.codes.ok,
-            requests.codes.created,
-            requests.codes.accepted,
-            requests.codes.no_content,
-        ):
-            if response.content:
-                data = response.json()
-                if isinstance(data, dict) and 'value' in data:
-                    return data['value']
-                return data
-        else:
-            raise OpenNebulaError(response.content)
-
-    def _get(self, endpoint, **kwargs):
-        return self._request('get', endpoint, **kwargs)
-
-    def _post(self, endpoint, **kwargs):
-        return self._request('post', endpoint, **kwargs)
-
-    def _patch(self, endpoint, **kwargs):
-        return self._request('patch', endpoint, **kwargs)
-
-    def _delete(self, endpoint, **kwargs):
-        return self._request('delete', endpoint, **kwargs)
-
-    def login(self, username, password):
+    def stop_vm(vm_id):
         """
-        Login to vCenter server using username and password.
+        Power off given virtual machine.
 
-        :param username: user to connect
-        :type username: string
-        :param password: password of the user
-        :type password: string
-        :raises Unauthorized: raised if credentials are invalid.
+        :param vm_id: Virtual machine identifier
+        :type vm_id: string
         """
-        self._post('com/opennebula/cis/session', auth=(username, password))
-        logger.info('Successfully logged in as {0}'.format(username))
+        return one.vm.action('stop', vm_id)
 
     def list_clusters(self):
         return self._get('vcenter/cluster')
@@ -140,23 +98,7 @@ class OpenNebulaClient:
         """
         return self._delete('vcenter/vm/{}'.format(vm_id))
 
-    def start_vm(self, vm_id):
-        """
-        Power on given virtual machine.
 
-        :param vm_id: Virtual machine identifier
-        :type vm_id: string
-        """
-        return self._post('vcenter/vm/{}/power/start'.format(vm_id))
-
-    def stop_vm(self, vm_id):
-        """
-        Power off given virtual machine.
-
-        :param vm_id: Virtual machine identifier
-        :type vm_id: string
-        """
-        return self._post('vcenter/vm/{}/power/stop'.format(vm_id))
 
     def reset_vm(self, vm_id):
         """
