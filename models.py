@@ -107,6 +107,7 @@ class VirtualMachine(
     cluster = models.ForeignKey('Cluster', null=True, on_delete=models.SET_NULL)
     datastore = models.ForeignKey('Datastore', null=True, on_delete=models.SET_NULL)
     folder = models.ForeignKey('Folder', null=True, on_delete=models.SET_NULL)
+    virtualmachine = models.ForeignKey('Virtual Machine', null=True, on_delete=models.SET_NULL)
     networks = models.ManyToManyField('Network', blank=True)
     guest_power_enabled = models.BooleanField(
         default=False,
