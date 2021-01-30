@@ -61,7 +61,7 @@ class VirtualMachine(
     VirtualMachineMixin, core_models.RuntimeStateMixin, structure_models.NewResource
 ):
     service_project_link = models.ForeignKey(
-        OpenNebulaServiceProjectLink, related_name='+', on_delete=models.PROTECT
+        OpenNebulaServiceProjectLink, related_name='Virtual Machine', on_delete=models.PROTECT
     )
 
     class RuntimeStates:
